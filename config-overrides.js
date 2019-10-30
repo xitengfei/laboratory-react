@@ -2,6 +2,7 @@ const { injectBabelPlugin } = require('react-app-rewired');
 const rewireLess = require('react-app-rewire-less');
 const rewireEslint = require('react-app-rewire-eslint');
 const path = require('path');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function resolve (dir) {
     return path.join(__dirname, dir)
@@ -25,6 +26,8 @@ module.exports = function override(config, env) {
 
     // eslint rewire
     config = rewireEslint(config, env);
+
+    config.plugins.push(new MonacoWebpackPlugin());
 
     return config;
 };

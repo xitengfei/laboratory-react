@@ -10,6 +10,8 @@ import EditableTable from './cases/EditableTable'
 import DragSlider from './custom/DragSlider';
 import GridLayout from './custom/GridLayout';
 
+import MonacoEditor from './samples/MonacoEditor';
+
 import './index.less';
 
 const { Header, Footer, Content } = Layout;
@@ -46,6 +48,7 @@ class Examples extends React.Component{
                         <Route path={`${basePath}/editable-table`} component={EditableTable}/>
                         <Route path={`${basePath}/drag-slider`} component={DragSlider}/>
                         <Route path={`${basePath}/grid-layout`} component={GridLayout}/>
+                        <Route path={`${basePath}/monaco-editor`} component={MonacoEditor}/>
                     </Switch>
                 </Content>
 

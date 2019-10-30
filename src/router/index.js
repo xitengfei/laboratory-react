@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale-provider/zh_CN';
+// import zhCN from 'antd/es/locale-provider/zh_CN';
 import zhTW from 'antd/es/locale-provider/zh_TW';
 
 import Home from "@/pages/Home"

@@ -42,6 +42,16 @@ export default ({match}) => {
                     </List>
                 </Card>
             </Col>
+
+            <Col span={8}>
+                <Card
+                    title="插件"
+                >
+                    <List>
+                        <Item><Link to={`${basePath}/monaco-editor`}>Monaco 代码编辑器</Link></Item>
+                    </List>
+                </Card>
+            </Col>
         </Row>
     )
 }
