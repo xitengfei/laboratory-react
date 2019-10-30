@@ -1,0 +1,108 @@
+@longitudinal-width: 30%;
+@transverse-width: 40%;
+@transverse-height: 30%;
+@center-height: 40%;
+
+.pane-stage{
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .response-layer{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        display: none;
+    }
+
+    .mouse-top-part {
+        width: @transverse-width;
+        height: @transverse-height;
+        position: absolute;
+        top: 0;
+        left: @longitudinal-width;
+        z-index: 1;
+    }
+
+    .mouse-right-part {
+        width: @longitudinal-width;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: @transverse-width + @longitudinal-width;
+        z-index: 1;
+    }
+
+    .mouse-bottom-part {
+        width: @transverse-width;
+        height: @transverse-height;
+        position: absolute;
+        top: @transverse-height + @center-height;
+        left: @longitudinal-width;
+        z-index: 1;
+    }
+
+    .mouse-left-part {
+        width: @longitudinal-width;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+
+    .mouse-center-part {
+        width: @transverse-width;
+        height: @center-height;
+        position: absolute;
+        top: @transverse-height;
+        left: @longitudinal-width;
+        z-index: 1;
+    }
+
+    .position-part {
+        border: 2px solid #a7d5ff;
+        background: #c2ecff;
+        opacity: 0.5;
+        position: absolute;
+        z-index: 10000;
+
+        &.top-part {
+            width: 100%;
+            height: 50%;
+            top: 0;
+            left: 0;
+        }
+
+        &.right-part {
+            width: 50%;
+            height: 100%;
+            top: 0;
+            left: 50%;
+        }
+
+        &.bottom-part {
+            width: 100%;
+            height: 50%;
+            top: 50%;
+            left: 0;
+        }
+
+        &.left-part {
+            width: 50%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        &.center-part {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+        }
+    }
+}

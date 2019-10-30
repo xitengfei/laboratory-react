@@ -1,0 +1,29 @@
+.drag-slider{
+    .box{
+        width: auto;
+        display: flex;
+        background: yellow;
+        padding: 10px;
+
+        .item{
+            display: inline-block;
+            width: 80px;
+            height: 24px;
+            background: blue;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .resizer{
+            position: absolute;
+            width: 10px;
+            height: 100%;
+            top: 0;
+            right: -5px;
+            z-index: 2;
+            cursor: col-resize;
+            background: #ccc;
+        }
+    }   
+}
