@@ -10,7 +10,7 @@ class RichEditor extends React.Component{
 
     handleDoubleClick = (e) => {
         e.preventDefault();
-        const html = '<div>'+e.target.innerText+'</div>';
+        const html = '<i>'+e.target.innerText+'</i>';
         this.editor && this.editor.insertHTML(html);
     }
 
@@ -28,7 +28,7 @@ class RichEditor extends React.Component{
                                     <li
                                         key={item}
                                         title={item}
-                                        onClick={this.handleDoubleClick}  
+                                        onDoubleClick={this.handleDoubleClick}  
                                     >{item}</li>
                                 )
                             })

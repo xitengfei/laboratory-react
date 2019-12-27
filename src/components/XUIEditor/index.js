@@ -43,26 +43,39 @@ class XUIEditor extends React.Component{
      * 插入html
      */
     insertHTML = (html) => {
-        // const isIE = !!window.ActiveXobject || "ActiveXObject" in window;
-        // if(!isIE){
-        //     this.execCommand('insertHTML', html);
-        // }else{
-        //     this._editor.innerHTML = this._editor.innerHTML + html;
-        // }
-
-
         if(this.underIE9){
-
+            document.selection.createRange().pasteHTML(html);
         }else{
-            if(this.range){
-                var el = document.createElement("div");
-                el.innerHTML = html;
-                var frag = document.createDocumentFragment(), node, lastNode;
-                while ( (node = el.firstChild) ) {
-                    lastNode = frag.appendChild(node);
-                }
-                var firstNode = frag.firstChild;
-                range.insertNode(frag);
+            const sel = window.getSelection();
+
+            // 自动选中
+            if(!this.range){
+                this._editor.focus();
+                this.range = sel.getRangeAt(0);
+            }else{
+                // clean selection
+                this.range.deleteContents();
+            }
+
+            // 插入内容
+            let el = document.createElement("div");
+            el.innerHTML = html;
+            let frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            this.range.insertNode(frag);
+
+            // 更新光标位置
+            if (lastNode) {
+                const range = this.range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+
+                // 记录
+                this.range = sel.getRangeAt(0);
             }
         }
 
@@ -71,7 +84,7 @@ class XUIEditor extends React.Component{
     /**
      * 记录光标
      */
-    handleKeyUp = () => {
+    recordRange = () => {
         if(this.underIE9){ // < IE9
             const sel = document.selection;
             this.range = sel.createRange();
@@ -79,6 +92,14 @@ class XUIEditor extends React.Component{
             const sel = window.getSelection();
             this.range = sel.getRangeAt(0);
         }
+    }
+
+    handleKeyUp = () => {
+        this.recordRange();
+    }
+
+    handleClick = () => {
+        this.recordRange();
     }
 
     render(){
@@ -94,6 +115,7 @@ class XUIEditor extends React.Component{
                     style={{width, height}}
                     spellCheck={false}
                     onKeyUp={this.handleKeyUp}
+                    onClick={this.handleClick}
                     placeholder={placeholder}
                 ></div>
             </div>
