@@ -49,6 +49,7 @@ export default ({match}) => {
                 >
                     <List>
                         <Item><Link to={`${basePath}/monaco-editor`}>Monaco 代码编辑器</Link></Item>
+                        <Item><Link to={`${basePath}/xui-editor`}>自定义富文本编辑器</Link></Item>
                     </List>
                 </Card>
             </Col>

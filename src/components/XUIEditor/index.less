@@ -1,0 +1,12 @@
+.xui-editor{
+    min-width: 100px;
+    border: 1px solid #333;
+    outline: none;
+    padding: 4px;
+    overflow: scroll;
+
+    &:empty:before {
+        content: attr(placeholder);
+        color: #999999;
+    }
+}

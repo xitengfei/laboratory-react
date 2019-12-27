@@ -2,7 +2,7 @@
 
 import React from "react";
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import 'monaco-editor/esm/vs/basic-languages/sql/sql.contribution';
+// import 'monaco-editor/esm/vs/basic-languages/sql/sql.contribution';
 import {language} from 'monaco-editor/esm/vs/basic-languages/sql/sql';
 
 export default class MonacoEditor extends React.Component{

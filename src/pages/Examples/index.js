@@ -11,6 +11,7 @@ import DragSlider from './custom/DragSlider';
 import GridLayout from './custom/GridLayout';
 
 import MonacoEditor from './samples/MonacoEditor';
+import RichEditor from './custom/RichEditor';
 
 import './index.less';
 
@@ -49,6 +50,7 @@ class Examples extends React.Component{
                         <Route path={`${basePath}/drag-slider`} component={DragSlider}/>
                         <Route path={`${basePath}/grid-layout`} component={GridLayout}/>
                         <Route path={`${basePath}/monaco-editor`} component={MonacoEditor}/>
+                        <Route path={`${basePath}/xui-editor`} component={RichEditor}/>
                     </Switch>
                 </Content>
 
