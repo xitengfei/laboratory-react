@@ -4,6 +4,7 @@ import './index.less';
 class XUIEditor extends React.Component{
     _editor = null;
     underIE9 = false;
+    range = null;
 
     constructor(props){
         super(props);
@@ -13,30 +14,19 @@ class XUIEditor extends React.Component{
     }
 
     setContent = (htmlContent) => {
-        if(this._editor && htmlContent) this._editor.innerHTML = htmlContent;
+        if(this._editor && htmlContent){
+            const currContent = this._editor.innerHTML;
+            if(currContent !== htmlContent){
+                this._editor.innerHTML = htmlContent;
+            }
+        }
     }
 
     componentDidMount(){
         this.setContent(this.props.htmlContent);
     }
     componentWillReceiveProps(nextProps){
-        this.setContent(nextProps.htmlContent)
-    }
-
-    /**
-     * 执行命令
-     * @param {*} sCmd 
-     * @param {*} sValue 
-     */
-    execCommand = (sCmd, sValue) => {
-        // if(document.activeElement !== this._editor){
-        //     this._editor.focus();
-        // }
-        // if(document.activeElement === this._editor){
-        //     document.execCommand(sCmd, false, sValue);
-        // }
-        document.execCommand(sCmd, false, sValue);
-        // this._editor.focus();
+        this.setContent(nextProps.htmlContent);
     }
 
     /**
@@ -50,7 +40,8 @@ class XUIEditor extends React.Component{
 
             // 自动选中
             if(!this.range){
-                this._editor.focus();
+                // 这里必须先focus, 否则回将dom插入到外部
+                this._editor.focus(); 
                 this.range = sel.getRangeAt(0);
             }else{
                 // clean selection
@@ -78,7 +69,7 @@ class XUIEditor extends React.Component{
                 this.range = sel.getRangeAt(0);
             }
         }
-
+        this.handleChange();
     }
 
     /**
@@ -102,6 +93,12 @@ class XUIEditor extends React.Component{
         this.recordRange();
     }
 
+    handleChange = () => {
+        const {onChange} = this.props;
+        const htmlContent = this._editor.innerHTML;
+        onChange && onChange(htmlContent);
+    }
+
     render(){
         const {width=200, height=200, placeholder=''} = this.props;
         return (
@@ -117,6 +114,7 @@ class XUIEditor extends React.Component{
                     onKeyUp={this.handleKeyUp}
                     onClick={this.handleClick}
                     placeholder={placeholder}
+                    onChange={this.handleChange}
                 ></div>
             </div>
         )

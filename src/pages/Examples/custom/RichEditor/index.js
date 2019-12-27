@@ -5,6 +5,10 @@ import './index.less';
 class RichEditor extends React.Component{
     editor = null;
 
+    state = {
+        content: '<span style="color:red">中国</span>美国<span><i>俄罗斯</i><b>加拿大</b><span>澳大利亚',
+    }
+
     componentDidMount(){
     }
 
@@ -39,7 +43,8 @@ class RichEditor extends React.Component{
                     ref={ref => this.editor = ref}
                     width={200}
                     placeholder={'请输入内容'}
-                    htmlContent={null}
+                    htmlContent={this.state.content}
+                    onChange={content => this.setState({content})}
                 />
             </div>
         )
